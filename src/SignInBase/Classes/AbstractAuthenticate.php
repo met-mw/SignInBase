@@ -16,7 +16,7 @@ abstract class AbstractAuthenticate implements InterfaceHttpAuthentication
      */
     public function encodePassword($password, $salt = null)
     {
-        return password_hash($password, PASSWORD_DEFAULT, $salt === null ? null : ['salt' => $salt]);
+        return password_hash($password . ($salt === null ? '' : $salt), PASSWORD_DEFAULT);
     }
 
     /**
