@@ -9,18 +9,18 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
 {
 
     /** Имя ключа в сессии */
-    const SESSION_KEY_NAME = 'sib_current_user';
+    protected $sessionKeyName = 'sib_current_user';
 
     protected function setSessionKey($sessionKey)
     {
         session_start();
-        $_SESSION[self::SESSION_KEY_NAME] = $sessionKey;
+        $_SESSION[$this->sessionKeyName] = $sessionKey;
     }
 
     protected function getSessionKey()
     {
         session_start();
-        return $this->authenticated() ? $_SESSION[self::SESSION_KEY_NAME] : null;
+        return $this->authenticated() ? $_SESSION[$this->sessionKeyName] : null;
     }
 
     /**
@@ -31,7 +31,7 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
     public function authenticated()
     {
         session_start();
-        return isset($_SESSION[self::SESSION_KEY_NAME]) && $_SESSION[self::SESSION_KEY_NAME];
+        return isset($_SESSION[$this->sessionKeyName]) && $_SESSION[$this->sessionKeyName];
     }
 
     /**
@@ -42,7 +42,7 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
     public function signOut()
     {
         session_start();
-        unset($_SESSION[self::SESSION_KEY_NAME]);
+        unset($_SESSION[$this->sessionKeyName]);
     }
 
 }
