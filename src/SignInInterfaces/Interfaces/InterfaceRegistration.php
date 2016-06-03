@@ -1,5 +1,5 @@
 <?php
-namespace SignInInterfaces\Interfaces;
+namespace SignInBase\Interfaces;
 
 
 interface InterfaceRegistration

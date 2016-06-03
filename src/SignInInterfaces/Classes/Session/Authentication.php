@@ -1,12 +1,15 @@
 <?php
-namespace SignInInterfaces\Classes;
+namespace SignInBase\Classes\Session;
 
-use SignInInterfaces\Interfaces\InterfaceAuthentication;
 
-abstract class Authentication implements InterfaceAuthentication
+use SignInBase\Classes\AbstractAuthenticate;
+use SignInBase\Interfaces\InterfaceAuthentication;
+
+abstract class Authentication extends AbstractAuthenticate implements InterfaceAuthentication
 {
 
-    const SESSION_KEY_NAME = 'current_user';
+    /** Имя ключа в сессии */
+    const SESSION_KEY_NAME = 'sib_current_user';
 
     protected function setSessionKey($sessionKey)
     {
@@ -20,26 +23,26 @@ abstract class Authentication implements InterfaceAuthentication
         return $this->authenticated() ? $_SESSION[self::SESSION_KEY_NAME] : null;
     }
 
+    /**
+     * Проверка аутернтификации пользователя
+     *
+     * @return bool
+     */
     public function authenticated()
     {
         session_start();
         return isset($_SESSION[self::SESSION_KEY_NAME]) && $_SESSION[self::SESSION_KEY_NAME];
     }
 
+    /**
+     * Выход
+     *
+     * @return bool
+     */
     public function signOut()
     {
         session_start();
         unset($_SESSION[self::SESSION_KEY_NAME]);
-    }
-
-    public function encodePassword($password, $salt = null)
-    {
-        return password_hash($password, PASSWORD_DEFAULT, $salt === null ? null : ['salt' => $salt]);
-    }
-
-    public function verifyPassword($inputPassword, $encodedReferencePassword)
-    {
-        return password_verify($inputPassword, $encodedReferencePassword);
     }
 
 }
