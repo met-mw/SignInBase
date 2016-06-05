@@ -19,8 +19,13 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
 
     protected function getSessionKey()
     {
+        return $this->hasSessionKey() ? $_SESSION[$this->sessionKeyName] : null;
+    }
+
+    protected function hasSessionKey()
+    {
         session_start();
-        return $this->authenticated() ? $_SESSION[$this->sessionKeyName] : null;
+        return isset($_SESSION[$this->sessionKeyName]) && $_SESSION[$this->sessionKeyName];
     }
 
     /**
@@ -30,8 +35,7 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
      */
     public function authenticated()
     {
-        session_start();
-        return isset($_SESSION[$this->sessionKeyName]) && $_SESSION[$this->sessionKeyName];
+        return $this->hasSessionKey();
     }
 
     /**
