@@ -2,13 +2,16 @@
 namespace SignInBase\Session;
 
 
-use SignInBase\AbstractAuthenticate;
-use SignInBase\InterfaceAuthentication;
+use SignInBase\AuthenticatorInterface;
 
-abstract class Authentication extends AbstractAuthenticate implements InterfaceAuthentication
+/**
+ * Class AuthenticatorAbstract
+ * @package SignInBase\Session
+ */
+abstract class AuthenticatorAbstract extends \SignInBase\AuthenticatorAbstract implements AuthenticatorInterface
 {
 
-    /** Имя ключа в сессии */
+    /** @var string Session key name */
     protected $sessionKeyName = 'sib_current_user';
 
     public function __construct()
@@ -16,24 +19,38 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
         session_start();
     }
 
-    protected function setSessionKey($sessionKey)
+    /**
+     * Set session key value
+     *
+     * @param string $value
+     */
+    protected function setSessionKey($value)
     {
-
-        $_SESSION[$this->sessionKeyName] = $sessionKey;
+        $_SESSION[$this->sessionKeyName] = $value;
     }
 
+    /**
+     * Get session key value
+     *
+     * @return mixed|null
+     */
     protected function getSessionKey()
     {
         return $this->hasSessionKey() ? $_SESSION[$this->sessionKeyName] : null;
     }
 
+    /**
+     * Check session key value exists
+     *
+     * @return bool
+     */
     protected function hasSessionKey()
     {
         return isset($_SESSION[$this->sessionKeyName]) && $_SESSION[$this->sessionKeyName];
     }
 
     /**
-     * Проверка аутернтификации пользователя
+     * Check user authentication
      *
      * @return bool
      */
@@ -43,7 +60,7 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
     }
 
     /**
-     * Выход
+     * Sign out
      *
      * @return bool
      */

@@ -2,6 +2,10 @@
 namespace SignInBase;
 
 
+/**
+ * Interface InterfaceRegistration
+ * @package SignInBase
+ */
 interface InterfaceRegistration
 {
 
