@@ -1,5 +1,5 @@
 <?php
-namespace SignInBase\Interfaces;
+namespace SignInBase;
 
 
 interface InterfaceAuthorization

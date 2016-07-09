@@ -1,8 +1,6 @@
 <?php
-namespace SignInBase\Classes;
+namespace SignInBase;
 
-
-use SignInBase\Interfaces\InterfaceHttpAuthentication;
 
 abstract class AbstractAuthenticate implements InterfaceHttpAuthentication
 {

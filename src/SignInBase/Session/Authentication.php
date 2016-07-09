@@ -1,9 +1,9 @@
 <?php
-namespace SignInBase\Classes\Session;
+namespace SignInBase\Session;
 
 
-use SignInBase\Classes\AbstractAuthenticate;
-use SignInBase\Interfaces\InterfaceAuthentication;
+use SignInBase\AbstractAuthenticate;
+use SignInBase\InterfaceAuthentication;
 
 abstract class Authentication extends AbstractAuthenticate implements InterfaceAuthentication
 {
@@ -11,9 +11,14 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
     /** Имя ключа в сессии */
     protected $sessionKeyName = 'sib_current_user';
 
-    protected function setSessionKey($sessionKey)
+    public function __construct()
     {
         session_start();
+    }
+
+    protected function setSessionKey($sessionKey)
+    {
+
         $_SESSION[$this->sessionKeyName] = $sessionKey;
     }
 
@@ -24,7 +29,6 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
 
     protected function hasSessionKey()
     {
-        session_start();
         return isset($_SESSION[$this->sessionKeyName]) && $_SESSION[$this->sessionKeyName];
     }
 
@@ -45,7 +49,6 @@ abstract class Authentication extends AbstractAuthenticate implements InterfaceA
      */
     public function signOut()
     {
-        session_start();
         unset($_SESSION[$this->sessionKeyName]);
     }
 
