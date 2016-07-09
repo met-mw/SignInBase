@@ -39,4 +39,11 @@ interface InterfaceHttpAuthentication
      */
     public function signIn($login, $password);
 
+    /**
+     * Get current siteuser
+     * 
+     * @return mixed
+     */
+    public function getCurrentUser();
+
 }
