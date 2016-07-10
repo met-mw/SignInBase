@@ -3,10 +3,10 @@ namespace SignInBase;
 
 
 /**
- * Interface InterfaceRegistration
+ * Interface RegistrationInterface
  * @package SignInBase
  */
-interface InterfaceRegistration
+interface RegistrationInterface
 {
 
     public function signUp();
