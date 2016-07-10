@@ -2,13 +2,11 @@
 namespace SignInBase\Session;
 
 
-use SignInBase\AuthenticatorInterface;
-
 /**
  * Class AuthenticatorAbstract
  * @package SignInBase\Session
  */
-abstract class AuthenticatorAbstract extends \SignInBase\AuthenticatorAbstract implements AuthenticatorInterface
+abstract class AuthenticatorAbstract extends \SignInBase\AuthenticatorAbstract
 {
 
     /** @var string Session key name */

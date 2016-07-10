@@ -9,7 +9,7 @@ use InvalidArgumentException;
  * Class AuthenticatorAbstract
  * @package SignInBase
  */
-abstract class AuthenticatorAbstract implements HttpAuthenticatorInterface
+abstract class AuthenticatorAbstract implements AuthenticatorInterface
 {
 
     /** @var string Password hash salt */
